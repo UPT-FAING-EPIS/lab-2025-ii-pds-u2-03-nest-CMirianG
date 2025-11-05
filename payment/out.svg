@@ -1,0 +1,280 @@
+<svg version="1.1" baseProfile="full" width="1601.0" height="280.0" viewBox="0 0 1601 280" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+
+[AppController|-appService: AppService|+getHello(): string]
+[AppModule||]
+[AppService||+getHello(): string]
+[CashPaymentStrategy||+Pay(): boolean]
+[IPaymentStrategy]&lt;:--[CashPaymentStrategy]
+[CreditCardPaymentStrategy||+Pay(): boolean]
+[IPaymentStrategy]&lt;:--[CreditCardPaymentStrategy]
+[DebitCardPaymentStrategy||+Pay(): boolean]
+[IPaymentStrategy]&lt;:--[DebitCardPaymentStrategy]
+[&lt;interface&gt;IPaymentStrategy||+Pay(): boolean]
+[PaymentContext|-PaymentStrategy: IPaymentStrategy|+SetPaymentStrategy(): void;+Pay(): boolean]
+[PaymentService||+ProcessPayment(): boolean]
+[&lt;enumeration&gt;PaymentType|CreditCard;DebitCard;Cash]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="280.0" width="1601.0" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#eee8d5" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<g stroke-dasharray="6 6">
+<path d="M580.2 83.2 L417 132 L417 152 L417.0 152.0 " fill="none"></path>
+</g>
+<path d="M581.8 88.3 L580.2 83.2 L578.7 78.1 L593.0 79.3 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M671.0 105.3 L671 132 L671 152 L671.0 152.0 " fill="none"></path>
+</g>
+<path d="M676.3 105.3 L671.0 105.3 L665.7 105.3 L671.0 92.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M761.8 81.3 L944 132 L944 152 L944.0 152.0 " fill="none"></path>
+</g>
+<path d="M763.3 76.2 L761.8 81.3 L760.4 86.4 L749.0 77.7 Z"></path>
+<g data-name="AppController">
+<g fill="#eee8d5" stroke="#33322E" data-name="AppController">
+<rect x="0.0" y="8.0" height="96.0" width="211.0" data-name="AppController"></rect>
+<path d="M0.0 40.0 L211.0 40.0" fill="none" data-name="AppController"></path>
+<path d="M0.0 72.0 L211.0 72.0" fill="none" data-name="AppController"></path>
+</g>
+<g transform="translate(0, 8)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AppController" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AppController" data-compartment="0">
+<a id="src\app.controller.ts.AppController" xlink:href="src\app.controller.ts"><text x="97.5" y="14.1" stroke="none" text-anchor="middle" data-name="AppController" data-compartment="0">AppController</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 40)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppController" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AppController" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="AppController" data-compartment="1">-appService: AppService</text>
+
+</g>
+</g>
+<g transform="translate(0, 72)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppController" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AppController" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="AppController" data-compartment="2">+getHello(): string</text>
+
+</g>
+</g>
+</g>
+<g data-name="AppModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="AppModule">
+<rect x="251.0" y="32.0" height="48.0" width="105.0" data-name="AppModule"></rect>
+<path d="M251.0 64.0 L356.0 64.0" fill="none" data-name="AppModule"></path>
+<path d="M251.0 72.0 L356.0 72.0" fill="none" data-name="AppModule"></path>
+</g>
+<g transform="translate(251, 32)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AppModule" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AppModule" data-compartment="0">
+<a id="src\app.module.ts.AppModule" xlink:href="src\app.module.ts"><text x="44.5" y="14.1" stroke="none" text-anchor="middle" data-name="AppModule" data-compartment="0">AppModule</text></a>
+
+</g>
+</g>
+<g transform="translate(251, 64)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppModule" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppModule" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(251, 72)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppModule" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppModule" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="AppService">
+<g fill="#eee8d5" stroke="#33322E" data-name="AppService">
+<rect x="396.0" y="20.0" height="72.0" width="157.0" data-name="AppService"></rect>
+<path d="M396.0 52.0 L553.0 52.0" fill="none" data-name="AppService"></path>
+<path d="M396.0 60.0 L553.0 60.0" fill="none" data-name="AppService"></path>
+</g>
+<g transform="translate(396, 20)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AppService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AppService" data-compartment="0">
+<a id="src\app.service.ts.AppService" xlink:href="src\app.service.ts"><text x="70.5" y="14.1" stroke="none" text-anchor="middle" data-name="AppService" data-compartment="0">AppService</text></a>
+
+</g>
+</g>
+<g transform="translate(396, 52)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AppService" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(396, 60)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AppService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="AppService" data-compartment="2">+getHello(): string</text>
+
+</g>
+</g>
+</g>
+<g data-name="CashPaymentStrategy">
+<g fill="#eee8d5" stroke="#33322E" data-name="CashPaymentStrategy">
+<rect x="321.0" y="152.0" height="72.0" width="192.0" data-name="CashPaymentStrategy"></rect>
+<path d="M321.0 184.0 L513.0 184.0" fill="none" data-name="CashPaymentStrategy"></path>
+<path d="M321.0 192.0 L513.0 192.0" fill="none" data-name="CashPaymentStrategy"></path>
+</g>
+<g transform="translate(321, 152)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CashPaymentStrategy" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CashPaymentStrategy" data-compartment="0">
+<a id="src\cash-payment-strategy.ts.CashPaymentStrategy" xlink:href="src\cash-payment-strategy.ts"><text x="88.0" y="14.1" stroke="none" text-anchor="middle" data-name="CashPaymentStrategy" data-compartment="0">CashPaymentStrategy</text></a>
+
+</g>
+</g>
+<g transform="translate(321, 184)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CashPaymentStrategy" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CashPaymentStrategy" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(321, 192)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CashPaymentStrategy" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CashPaymentStrategy" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="CashPaymentStrategy" data-compartment="2">+Pay(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="IPaymentStrategy">
+<g fill="lightblue" stroke="#33322E" data-name="IPaymentStrategy">
+<rect x="593.0" y="20.0" height="72.0" width="156.0" data-name="IPaymentStrategy"></rect>
+<path d="M593.0 52.0 L749.0 52.0" fill="none" data-name="IPaymentStrategy"></path>
+<path d="M593.0 60.0 L749.0 60.0" fill="none" data-name="IPaymentStrategy"></path>
+</g>
+<g transform="translate(593, 20)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IPaymentStrategy" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IPaymentStrategy" data-compartment="0">
+<a id="src\ipayment-strategy.interface.ts.IPaymentStrategy" xlink:href="src\ipayment-strategy.interface.ts"><text x="70.0" y="14.1" stroke="none" text-anchor="middle" data-name="IPaymentStrategy" data-compartment="0">IPaymentStrategy</text></a>
+
+</g>
+</g>
+<g transform="translate(593, 52)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IPaymentStrategy" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IPaymentStrategy" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(593, 60)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IPaymentStrategy" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IPaymentStrategy" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="IPaymentStrategy" data-compartment="2">+Pay(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="CreditCardPaymentStrategy">
+<g fill="#eee8d5" stroke="#33322E" data-name="CreditCardPaymentStrategy">
+<rect x="553.0" y="152.0" height="72.0" width="236.0" data-name="CreditCardPaymentStrategy"></rect>
+<path d="M553.0 184.0 L789.0 184.0" fill="none" data-name="CreditCardPaymentStrategy"></path>
+<path d="M553.0 192.0 L789.0 192.0" fill="none" data-name="CreditCardPaymentStrategy"></path>
+</g>
+<g transform="translate(553, 152)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CreditCardPaymentStrategy" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CreditCardPaymentStrategy" data-compartment="0">
+<a id="src\credit-card-payment-strategy.ts.CreditCardPaymentStrategy" xlink:href="src\credit-card-payment-strategy.ts"><text x="110.0" y="14.1" stroke="none" text-anchor="middle" data-name="CreditCardPaymentStrategy" data-compartment="0">CreditCardPaymentStrategy</text></a>
+
+</g>
+</g>
+<g transform="translate(553, 184)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreditCardPaymentStrategy" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CreditCardPaymentStrategy" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(553, 192)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreditCardPaymentStrategy" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CreditCardPaymentStrategy" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="CreditCardPaymentStrategy" data-compartment="2">+Pay(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="DebitCardPaymentStrategy">
+<g fill="#eee8d5" stroke="#33322E" data-name="DebitCardPaymentStrategy">
+<rect x="829.0" y="152.0" height="72.0" width="230.0" data-name="DebitCardPaymentStrategy"></rect>
+<path d="M829.0 184.0 L1059.0 184.0" fill="none" data-name="DebitCardPaymentStrategy"></path>
+<path d="M829.0 192.0 L1059.0 192.0" fill="none" data-name="DebitCardPaymentStrategy"></path>
+</g>
+<g transform="translate(829, 152)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DebitCardPaymentStrategy" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DebitCardPaymentStrategy" data-compartment="0">
+<a id="src\debit-card-payment-strategy.ts.DebitCardPaymentStrategy" xlink:href="src\debit-card-payment-strategy.ts"><text x="107.0" y="14.1" stroke="none" text-anchor="middle" data-name="DebitCardPaymentStrategy" data-compartment="0">DebitCardPaymentStrategy</text></a>
+
+</g>
+</g>
+<g transform="translate(829, 184)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DebitCardPaymentStrategy" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DebitCardPaymentStrategy" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(829, 192)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DebitCardPaymentStrategy" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DebitCardPaymentStrategy" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="DebitCardPaymentStrategy" data-compartment="2">+Pay(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="PaymentContext">
+<g fill="#eee8d5" stroke="#33322E" data-name="PaymentContext">
+<rect x="789.0" y="0.0" height="112.0" width="307.0" data-name="PaymentContext"></rect>
+<path d="M789.0 32.0 L1096.0 32.0" fill="none" data-name="PaymentContext"></path>
+<path d="M789.0 64.0 L1096.0 64.0" fill="none" data-name="PaymentContext"></path>
+</g>
+<g transform="translate(789, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PaymentContext" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PaymentContext" data-compartment="0">
+<a id="src\payment-context.ts.PaymentContext" xlink:href="src\payment-context.ts"><text x="145.5" y="14.1" stroke="none" text-anchor="middle" data-name="PaymentContext" data-compartment="0">PaymentContext</text></a>
+
+</g>
+</g>
+<g transform="translate(789, 32)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PaymentContext" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PaymentContext" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="PaymentContext" data-compartment="1">-PaymentStrategy: IPaymentStrategy</text>
+
+</g>
+</g>
+<g transform="translate(789, 64)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PaymentContext" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PaymentContext" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="PaymentContext" data-compartment="2">+SetPaymentStrategy(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="PaymentContext" data-compartment="2">+Pay(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="PaymentService">
+<g fill="#eee8d5" stroke="#33322E" data-name="PaymentService">
+<rect x="1136.0" y="20.0" height="72.0" width="245.0" data-name="PaymentService"></rect>
+<path d="M1136.0 52.0 L1381.0 52.0" fill="none" data-name="PaymentService"></path>
+<path d="M1136.0 60.0 L1381.0 60.0" fill="none" data-name="PaymentService"></path>
+</g>
+<g transform="translate(1136, 20)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PaymentService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PaymentService" data-compartment="0">
+<a id="src\payment-service.ts.PaymentService" xlink:href="src\payment-service.ts"><text x="114.5" y="14.1" stroke="none" text-anchor="middle" data-name="PaymentService" data-compartment="0">PaymentService</text></a>
+
+</g>
+</g>
+<g transform="translate(1136, 52)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PaymentService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="PaymentService" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(1136, 60)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PaymentService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PaymentService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="PaymentService" data-compartment="2">+ProcessPayment(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="PaymentType">
+<g fill="lightgreen" stroke="#33322E" data-name="PaymentType">
+<rect x="1421.0" y="7.5" height="97.0" width="124.0" data-name="PaymentType"></rect>
+<path d="M1421.0 39.5 L1545.0 39.5" fill="none" data-name="PaymentType"></path>
+</g>
+<g transform="translate(1421, 7.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PaymentType" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PaymentType" data-compartment="0">
+<a id="src\payment-service.ts.PaymentType" xlink:href="src\payment-service.ts"><text x="54.0" y="14.1" stroke="none" text-anchor="middle" data-name="PaymentType" data-compartment="0">PaymentType</text></a>
+
+</g>
+</g>
+<g transform="translate(1421, 39.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PaymentType" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PaymentType" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="PaymentType" data-compartment="1">CreditCard</text>
+<text x="0.0" y="30.3" stroke="none" data-name="PaymentType" data-compartment="1">DebitCard</text>
+<text x="0.0" y="46.5" stroke="none" data-name="PaymentType" data-compartment="1">Cash</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
