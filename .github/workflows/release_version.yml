@@ -1,0 +1,66 @@
+name: Release Version
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Extract version from tag
+        id: tag_version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION"
+
+      - name: Build Payment package
+        working-directory: ./payment
+        run: |
+          npm ci
+          npm run build
+          npm pkg set version=${{ steps.tag_version.outputs.version }}
+
+      - name: Build ATM package
+        working-directory: ./atm
+        run: |
+          npm ci
+          npm run build
+          npm pkg set version=${{ steps.tag_version.outputs.version }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ steps.tag_version.outputs.version }}
+          body: |
+            ## Release ${{ steps.tag_version.outputs.version }}
+
+            ### Payment Package
+            - Payment package version ${{ steps.tag_version.outputs.version }}
+
+            ### ATM Package
+            - ATM package version ${{ steps.tag_version.outputs.version }}
+
+            ### Changes
+            See the [changelog](CHANGELOG.md) for details.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
