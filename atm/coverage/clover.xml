@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1762357054091" clover="3.2.0">
-  <project timestamp="1762357054091" name="All files">
+<coverage generated="1762358959569" clover="3.2.0">
+  <project timestamp="1762358959569" name="All files">
     <metrics statements="37" coveredstatements="17" conditionals="10" coveredconditionals="2" methods="12" coveredmethods="8" elements="59" coveredelements="27" complexity="0" loc="37" ncloc="37" packages="1" files="8" classes="8"/>
     <file name="account.ts" path="C:\Users\cmiri\OneDrive\Documentos\GitHub\lab-2025-ii-pds-u2-03-nest-CMirianG\atm\src\account.ts">
       <metrics statements="8" coveredstatements="6" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>

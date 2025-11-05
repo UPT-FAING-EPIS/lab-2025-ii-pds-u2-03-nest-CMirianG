@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1762357039907" clover="3.2.0">
-  <project timestamp="1762357039907" name="All files">
+<coverage generated="1762360314987" clover="3.2.0">
+  <project timestamp="1762360314987" name="All files">
     <metrics statements="48" coveredstatements="30" conditionals="14" coveredconditionals="8" methods="11" coveredmethods="7" elements="73" coveredelements="45" complexity="0" loc="48" ncloc="48" packages="1" files="9" classes="9"/>
     <file name="app.controller.ts" path="C:\Users\cmiri\OneDrive\Documentos\GitHub\lab-2025-ii-pds-u2-03-nest-CMirianG\payment\src\app.controller.ts">
       <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
