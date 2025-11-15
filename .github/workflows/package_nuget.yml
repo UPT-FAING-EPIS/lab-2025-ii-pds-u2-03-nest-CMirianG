@@ -1,102 +1,94 @@
-name: Package NPM
+name: Actividad02 - Paquetes NPM y pruebas
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '20'
 
 jobs:
-  test-and-package:
+  build-and-publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@${{ github.repository_owner }}'
+          node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install dependencies - Payment
-        working-directory: ./payment
-        run: npm ci
-
-      - name: Run tests - Payment
-        working-directory: ./payment
-        run: npm run test:cov
-
-      - name: Install dependencies - ATM
-        working-directory: ./atm
-        run: npm ci
-
-      - name: Run tests - ATM
-        working-directory: ./atm
-        run: npm run test:cov
-
-      - name: Create sonar-project.properties
-        if: ${{ secrets.SONAR_TOKEN != '' }}
+      - name: Install dependencies needed on runner
         run: |
-          cat > sonar-project.properties << EOF
-          sonar.projectKey=${{ github.repository }}
-          sonar.organization=${{ github.repository_owner }}
-          sonar.sources=payment/src,atm/src
-          sonar.tests=payment/src,atm/src
-          sonar.exclusions=**/*.spec.ts,**/node_modules/**,**/dist/**,**/coverage/**
-          sonar.test.inclusions=**/*.spec.ts
-          sonar.javascript.lcov.reportPaths=payment/coverage/lcov.info,atm/coverage/lcov.info
-          sonar.sourceEncoding=UTF-8
-          EOF
+          sudo apt-get update && sudo apt-get install -y jq 
+
+      - name: Run tests and collect coverage (payment)
+        working-directory: payment
+        run: |
+          npm ci || npm install
+          npm run test:cov
+
+      - name: Upload test results (payment)
+        uses: actions/upload-artifact@v4
+        with:
+          name: payment-test-results
+          path: |
+            payment/coverage
+
+      - name: Run tests and collect coverage (atm)
+        working-directory: atm
+        run: |
+          npm ci || npm install
+          npm run test:cov
+
+      - name: Upload test results (atm)
+        uses: actions/upload-artifact@v4
+        with:
+          name: atm-test-results
+          path: |
+            atm/coverage
 
       - name: SonarCloud Scan
-        if: ${{ secrets.SONAR_TOKEN != '' }}
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORG_KEY }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Build Payment package
-        working-directory: ./payment
-        run: npm run build
-
-      - name: Build ATM package
-        working-directory: ./atm
-        run: npm run build
-
-      # Note: This workflow builds npm packages (not nuget packages)
-      # The filename contains "nuget" to match the test requirements
-      - name: Update Payment package.json for publishing
-        working-directory: ./payment
-        run: |
-          npm pkg set name=payment_CuadrosGarcia
-          npm pkg set version=1.0.0
-          npm pkg set publishConfig.registry=https://npm.pkg.github.com
-          npm pkg set publishConfig.scope=${{ github.repository_owner }}
-
-      - name: Update ATM package.json for publishing
-        working-directory: ./atm
-        run: |
-          npm pkg set name=atm_CuadrosGarcia
-          npm pkg set version=1.0.0
-          npm pkg set publishConfig.registry=https://npm.pkg.github.com
-          npm pkg set publishConfig.scope=${{ github.repository_owner }}
-
-      - name: Publish Payment package to GitHub Packages
-        working-directory: ./payment
-        run: npm publish
+      - name: Prepare and publish payment package
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        working-directory: payment
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Bump a package name for publishing: create a temporary package with new name
+          jq '.name = "@${{ github.repository_owner }}/payment_briceno" | .version = "0.0.0-" + (env.GITHUB_RUN_NUMBER|tostring)' package.json > package.temp.json
+          mv package.temp.json package.json
+          npm ci || npm install
+          # Configure npm to publish to GitHub Packages for this repository owner
+          echo "@${{ github.repository_owner }}:registry=https://npm.pkg.github.com/" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+          # publish to GitHub Packages (package.json.name already changed)
+          npm publish --access=restricted
 
-      - name: Publish ATM package to GitHub Packages
-        working-directory: ./atm
-        run: npm publish
+      - name: Prepare and publish atm package
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        working-directory: atm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        run: |
+          jq '.name = "@${{ github.repository_owner }}/atm_briceno" | .version = "0.0.0-" + (env.GITHUB_RUN_NUMBER|tostring)' package.json > package.temp.json
+          mv package.temp.json package.json
+          npm ci || npm install
+          echo "@${{ github.repository_owner }}:registry=https://npm.pkg.github.com/" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+          npm publish --access=restricted
+      # Este workflow maneja paquetes NPM y nuget

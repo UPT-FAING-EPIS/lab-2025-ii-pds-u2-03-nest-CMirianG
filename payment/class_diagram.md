@@ -1,19 +1,9 @@
-```mermaid
+
+
+ ```mermaid
 classDiagram
 
 
-class AppController{
-            -appService: AppService
-            +getHello() string
-        }
-class AppModule{
-            
-            
-        }
-class AppService{
-            
-            +getHello() string
-        }
 class CashPaymentStrategy{
             
             +Pay() boolean
@@ -29,6 +19,14 @@ class DebitCardPaymentStrategy{
             +Pay() boolean
         }
 IPaymentStrategy<|..DebitCardPaymentStrategy
+class DomainModule{
+            
+            
+        }
+class DomainService{
+            
+            
+        }
 class IPaymentStrategy {
             <<interface>>
             
@@ -49,4 +47,6 @@ class PaymentType {
 DebitCard
 Cash
       }
+
+
 ```

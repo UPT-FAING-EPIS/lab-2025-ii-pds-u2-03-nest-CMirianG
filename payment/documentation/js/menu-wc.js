@@ -89,6 +89,23 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </ul>
                                 </li>
                             </li>
+                            <li class="link">
+                                <a href="modules/DomainModule.html" data-type="entity-link" >DomainModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                        'data-bs-target="#injectables-links-module-DomainModule-caa429b55b038c4c6816b85cb1d498501fca34bb1af62cbbef934e2ef7fbfb25f2e1fde32a010909577d9c824e8e8c6a6deb3c9cd0bc33d73667992b5c44c330"' : 'data-bs-target="#xs-injectables-links-module-DomainModule-caa429b55b038c4c6816b85cb1d498501fca34bb1af62cbbef934e2ef7fbfb25f2e1fde32a010909577d9c824e8e8c6a6deb3c9cd0bc33d73667992b5c44c330"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-DomainModule-caa429b55b038c4c6816b85cb1d498501fca34bb1af62cbbef934e2ef7fbfb25f2e1fde32a010909577d9c824e8e8c6a6deb3c9cd0bc33d73667992b5c44c330"' :
+                                        'id="xs-injectables-links-module-DomainModule-caa429b55b038c4c6816b85cb1d498501fca34bb1af62cbbef934e2ef7fbfb25f2e1fde32a010909577d9c824e8e8c6a6deb3c9cd0bc33d73667992b5c44c330"' }>
+                                        <li class="link">
+                                            <a href="injectables/DomainService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DomainService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
                 </ul>
                 </li>
                         <li class="chapter">
@@ -139,6 +156,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
                                     <a href="injectables/AppService.html" data-type="entity-link" >AppService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/DomainService.html" data-type="entity-link" >DomainService</a>
                                 </li>
                             </ul>
                         </li>
