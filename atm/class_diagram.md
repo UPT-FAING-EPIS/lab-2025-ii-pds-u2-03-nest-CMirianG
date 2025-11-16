@@ -9,18 +9,6 @@ class Account{
             +Withdraw() void
 +Deposit() void
         }
-class AppController{
-            -appService: AppService
-            +getHello() string
-        }
-class AppModule{
-            
-            
-        }
-class AppService{
-            
-            +getHello() string
-        }
 class ATM{
             +_command: ICommand
             +Action() void
@@ -31,6 +19,14 @@ class DepositCommand{
             +Execute() void
         }
 ICommand<|..DepositCommand
+class DomainModule{
+            
+            
+        }
+class DomainService{
+            
+            
+        }
 class ICommand {
             <<interface>>
             
@@ -42,4 +38,6 @@ class WithdrawCommand{
             +Execute() void
         }
 ICommand<|..WithdrawCommand
+
+
 ```

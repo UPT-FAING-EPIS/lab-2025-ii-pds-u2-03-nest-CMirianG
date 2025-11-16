@@ -1,66 +1,56 @@
-name: Release Version
+name: Actividad03 - Release packages
 
 on:
   push:
     tags:
       - 'v*'
 
-permissions:
-  contents: write
+env:
+  NODE_VERSION: '20'
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Extract version from tag
-        id: tag_version
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Version: $VERSION"
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
-      - name: Build Payment package
-        working-directory: ./payment
+      - name: Build & pack payment
+        working-directory: payment
         run: |
-          npm ci
-          npm run build
-          npm pkg set version=${{ steps.tag_version.outputs.version }}
+          npm ci || npm install
+          npm run test --if-present
+          # Actualiza la versión en package.json con la del tag, sin crear un nuevo commit/tag de git.
+          npm version ${{ steps.get_version.outputs.VERSION }} --no-git-tag-version
+          mkdir -p ../artifacts
+          npm pack --pack-destination ../artifacts
 
-      - name: Build ATM package
-        working-directory: ./atm
+      - name: Build & pack atm
+        working-directory: atm
         run: |
-          npm ci
-          npm run build
-          npm pkg set version=${{ steps.tag_version.outputs.version }}
+          npm ci || npm install
+          npm run test --if-present
+          npm version ${{ steps.get_version.outputs.VERSION }} --no-git-tag-version
+          mkdir -p ../artifacts
+          npm pack --pack-destination ../artifacts
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      - name: List artifacts for debugging
+        run: ls -R artifacts
+
+      - name: Create GitHub Release and upload artifacts
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ steps.tag_version.outputs.version }}
-          body: |
-            ## Release ${{ steps.tag_version.outputs.version }}
-
-            ### Payment Package
-            - Payment package version ${{ steps.tag_version.outputs.version }}
-
-            ### ATM Package
-            - ATM package version ${{ steps.tag_version.outputs.version }}
-
-            ### Changes
-            See the [changelog](CHANGELOG.md) for details.
-          draft: false
-          prerelease: false
+          files: "artifacts/*.tgz"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
